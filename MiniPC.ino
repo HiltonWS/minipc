@@ -63,7 +63,7 @@ void loop() {
           break;
         }
         currentLine += c;
-         // Check to see if the serverClient request was "GET /H" or "GET /L":
+         // Check to see if the serverClient request was "GET /H" or "GET /L and more":
         if (currentLine.endsWith("GET /H?")) {
           digitalWrite(10, HIGH);               // GET /H turns the LED on
           serverClient.println("HTTP/1.1 200 OK");
@@ -72,9 +72,7 @@ void loop() {
           serverClient.println();
           
           serverClient.println("");
-          M5.Beep.tone(100);
-          delay(100);
-          M5.Beep.mute();
+         
         }else if (currentLine.endsWith("GET /L?")) {
           digitalWrite(10, LOW);
           serverClient.println("HTTP/1.1 200 OK");
@@ -83,9 +81,7 @@ void loop() {
           serverClient.println();
 
           serverClient.println("");               // GET /L turns the LED off
-          M5.Beep.tone(10000);
-          delay(100);
-          M5.Beep.mute();
+          
         }else if (currentLine.endsWith("GET /HEALTH?")) {
           serverClient.println("HTTP/1.1 200 OK");
           serverClient.println("Content-Type: text/html");
@@ -93,9 +89,7 @@ void loop() {
           serverClient.println();
 
           serverClient.println("");               // GET /HEALTH  healthcheck
-          M5.Beep.tone(2000);
-          delay(400);
-          M5.Beep.mute();
+          
         } 
         prevprev = prev;
         prev = c;
